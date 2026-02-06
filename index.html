@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilson Roofing Co. | Dayton, Ohio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2C5F3F;
+    --green-dark: #1E3F2B;
+    --green-light: #3A7A52;
+    --cream: #F5F0E8;
+    --cream-dark: #E8E0D0;
+    --cream-light: #FAF7F2;
+    --text-dark: #1A1A1A;
+    --text-mid: #555;
+    --white: #fff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream-light);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(44,95,63,0.1);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; color: var(--green); line-height: 1.1;
+    letter-spacing: 0.5px;
+  }
+  .nav-logo span { display: block; }
+  .nav-logo .co { font-size: 13px; letter-spacing: 2px; color: var(--green-light); }
+
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-dark);
+    font-size: 14px; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green) !important; color: var(--cream) !important;
+    padding: 10px 24px !important; border-radius: 6px;
+    font-weight: 600 !important; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; }
+
+  .nav-phone {
+    font-weight: 600; color: var(--green) !important;
+    font-size: 15px !important;
+  }
+
+  .hamburger {
+    display: none; cursor: pointer; background: none; border: none;
+    flex-direction: column; gap: 5px; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--green); border-radius: 2px; transition: 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    background: linear-gradient(165deg, var(--green-dark) 0%, var(--green) 40%, var(--green-light) 100%);
+    position: relative; overflow: hidden;
+    padding: 120px 32px 80px;
+  }
+
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 120px;
+    background: var(--cream-light);
+    clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-content {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .hero-text h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 5vw, 68px);
+    color: var(--cream); line-height: 1.1; margin-bottom: 20px;
+  }
+
+  .hero-text p {
+    font-size: 18px; color: rgba(245,240,232,0.8);
+    max-width: 480px; line-height: 1.7; margin-bottom: 36px; font-weight: 300;
+  }
+
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block; background: var(--cream);
+    color: var(--green-dark); padding: 16px 36px;
+    border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--cream); padding: 16px 36px;
+    border: 2px solid rgba(245,240,232,0.4);
+    border-radius: 8px; text-decoration: none;
+    font-weight: 500; font-size: 16px; transition: 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cream); background: rgba(255,255,255,0.08); }
+
+  .hero-logo-block {
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .hero-logo-large {
+    font-family: 'DM Serif Display', serif;
+    color: var(--cream); text-align: center; line-height: 1;
+    opacity: 0.12; user-select: none;
+  }
+  .hero-logo-large .w1 { font-size: clamp(60px, 8vw, 110px); display: block; }
+  .hero-logo-large .w2 { font-size: clamp(60px, 8vw, 110px); display: block; }
+  .hero-logo-large .w3 { font-size: clamp(30px, 4vw, 50px); display: block; letter-spacing: 8px; margin-top: 4px; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--cream-light); padding: 48px 32px;
+    position: relative; z-index: 3;
+  }
+  .trust-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+    text-align: center;
+  }
+  .trust-item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .trust-item .num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--green);
+  }
+  .trust-item .label {
+    font-size: 13px; color: var(--text-mid);
+    font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 32px; }
+
+  .section-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 3px;
+    color: var(--green); font-weight: 600; margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--text-dark); margin-bottom: 20px; line-height: 1.15;
+  }
+
+  .section-subtitle {
+    font-size: 17px; color: var(--text-mid);
+    max-width: 560px; line-height: 1.7; font-weight: 300;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--cream-light); }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-header { text-align: center; margin-bottom: 64px; }
+  .services-header .section-subtitle { margin: 0 auto; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    max-width: 700px; margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--white); border-radius: 12px;
+    padding: 40px 28px; text-align: center;
+    border: 1px solid rgba(44,95,63,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(44,95,63,0.1);
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--green);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 64px; height: 64px; margin: 0 auto 20px;
+    background: var(--cream); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+
+  .service-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; margin-bottom: 10px; color: var(--text-dark);
+  }
+  .service-card p {
+    font-size: 14px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* ── WHY US ── */
+  .why-us { background: var(--white); }
+  .why-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .why-features { display: flex; flex-direction: column; gap: 32px; margin-top: 36px; }
+
+  .why-feature {
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+
+  .why-feature-num {
+    width: 40px; height: 40px; min-width: 40px;
+    background: var(--green); color: var(--cream);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+  }
+
+  .why-feature h4 { font-size: 16px; margin-bottom: 4px; }
+  .why-feature p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+  .why-visual {
+    background: var(--green);
+    border-radius: 16px; padding: 48px;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; min-height: 420px;
+    position: relative; overflow: hidden;
+  }
+  .why-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 0L40 20L20 40L0 20z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .why-visual-logo {
+    font-family: 'DM Serif Display', serif;
+    color: var(--cream); text-align: center; line-height: 1;
+    position: relative; z-index: 1;
+  }
+  .why-visual-logo span { display: block; }
+  .why-visual-logo .wv1 { font-size: 56px; }
+  .why-visual-logo .wv2 { font-size: 56px; }
+  .why-visual-logo .wv3 { font-size: 26px; letter-spacing: 6px; margin-top: 6px; }
+  .why-visual-tagline {
+    color: rgba(245,240,232,0.6); font-size: 14px;
+    margin-top: 24px; letter-spacing: 2px; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+
+  /* ── SERVICE AREA ── */
+  .area { background: var(--cream); }
+  .area-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+
+  .area-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px;
+  }
+
+  .area-tag {
+    background: var(--white); padding: 12px 18px;
+    border-radius: 8px; font-size: 14px; font-weight: 500;
+    border: 1px solid rgba(44,95,63,0.08);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .area-tag::before {
+    content: '✓'; color: var(--green); font-weight: 700; font-size: 13px;
+  }
+
+  .area-map {
+    background: var(--white); border-radius: 16px;
+    overflow: hidden; aspect-ratio: 1;
+    border: 1px solid rgba(44,95,63,0.08);
+    position: relative;
+  }
+  .area-map iframe { width: 100%; height: 100%; border: none; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--cream-light); }
+  .contact-inner {
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+
+  .contact-header { margin-bottom: 48px; }
+  .contact-header .section-subtitle { margin: 0 auto; }
+
+  .contact-cta-box {
+    background: var(--green); border-radius: 20px;
+    padding: 60px 48px; position: relative; overflow: hidden;
+  }
+  .contact-cta-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 0L40 20L20 40L0 20z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .contact-cta-box * { position: relative; z-index: 1; }
+
+  .cta-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px); color: var(--cream);
+    margin-bottom: 12px; line-height: 1.15;
+  }
+
+  .cta-sub {
+    font-size: 17px; color: rgba(245,240,232,0.7);
+    margin-bottom: 40px; font-weight: 300;
+  }
+
+  .cta-phone {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--cream); color: var(--green-dark);
+    padding: 20px 44px; border-radius: 12px;
+    text-decoration: none; font-size: 28px; font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 24px;
+  }
+  .cta-phone:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  }
+
+  .cta-divider {
+    color: rgba(245,240,232,0.4); font-size: 14px;
+    margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  .cta-email {
+    color: var(--cream); font-size: 18px;
+    text-decoration: none; font-weight: 400;
+    border-bottom: 1px solid rgba(245,240,232,0.3);
+    padding-bottom: 2px; transition: border-color 0.2s;
+  }
+  .cta-email:hover { border-color: var(--cream); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-dark); color: var(--cream); padding: 64px 32px 32px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+  }
+
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; line-height: 1.1; margin-bottom: 16px;
+  }
+  .footer-logo span { display: block; }
+  .footer-logo .fc { font-size: 14px; letter-spacing: 3px; opacity: 0.6; }
+
+  .footer-desc {
+    font-size: 14px; opacity: 0.6; line-height: 1.7; max-width: 320px;
+  }
+
+  .footer-heading {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
+    font-weight: 600; margin-bottom: 20px; opacity: 0.5;
+  }
+
+  .footer-links { display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    color: var(--cream); text-decoration: none;
+    font-size: 15px; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .footer-links a:hover { opacity: 1; }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 48px auto 0;
+    padding-top: 24px; border-top: 1px solid rgba(245,240,232,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; opacity: 0.4;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--cream); padding: 24px 32px;
+      border-bottom: 1px solid rgba(44,95,63,0.1);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-text p { margin: 0 auto 36px; }
+    .hero-buttons { justify-content: center; }
+    .hero-logo-block { display: none; }
+
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .why-inner { grid-template-columns: 1fr; }
+    .why-visual { min-height: 280px; }
+    .area-inner { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .area-list { grid-template-columns: 1fr; }
+    .trust-inner { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span>WILSON</span>
+      <span>ROOFING</span>
+      <span class="co">CO.</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#area">Service Area</a>
+      <a href="tel:9376684122" class="nav-phone">📞 (937) 668-4122</a>
+      <a href="#contact" class="nav-cta">Free Quote</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Dayton's Trusted Exterior Experts</h1>
+      <p>Professional roofing and gutter services for homeowners across the greater Dayton area. Quality craftsmanship you can count on.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="tel:9376684122" class="btn-secondary">📞 (937) 668-4122</a>
+      </div>
+    </div>
+    <div class="hero-logo-block">
+      <div class="hero-logo-large">
+        <span class="w1">WILSON</span>
+        <span class="w2">ROOFING</span>
+        <span class="w3">CO.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="num">100%</div>
+      <div class="label">Satisfaction Guaranteed</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">Free</div>
+      <div class="label">Inspections &amp; Estimates</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">Local</div>
+      <div class="label">Owner Operated</div>
+    </div>
+    <div class="trust-item">
+      <div class="num">Insured</div>
+      <div class="label">Licensed &amp; Covered</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header fade-in">
+      <div class="section-label">What We Do</div>
+      <div class="section-title">Our Services</div>
+      <div class="section-subtitle">Expert roofing and gutter solutions to protect your home, delivered with hands-on expertise and attention to detail.</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🏠</div>
+        <h3>Roofing</h3>
+        <p>Residential roof replacements, tear-offs, repairs, and storm damage restoration. Expert asphalt shingle installation you can trust.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🌧️</div>
+        <h3>Gutters</h3>
+        <p>Seamless gutter installation, gutter guards, and downspout systems to protect your foundation from water damage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why">
+  <div class="why-inner">
+    <div class="why-text fade-in">
+      <div class="section-label">Why Wilson</div>
+      <div class="section-title">Built on Hard Work &amp; Honest Service</div>
+      <div class="section-subtitle">We're not a franchise or a call center. Wilson Roofing Co. is owner-operated, and we show up on every job.</div>
+      <div class="why-features">
+        <div class="why-feature">
+          <div class="why-feature-num">01</div>
+          <div>
+            <h4>Hands-On Owner</h4>
+            <p>The owner is on the job site — not just behind a desk. You deal directly with the person doing the work.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-feature-num">02</div>
+          <div>
+            <h4>Transparent Pricing</h4>
+            <p>No hidden fees, no surprise charges. You get a clear written estimate before any work begins.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-feature-num">03</div>
+          <div>
+            <h4>Local Reputation</h4>
+            <p>We live and work in the Dayton area. Our reputation is everything, and we back every job with pride.</p>
+          </div>
+        </div>
+        <div class="why-feature">
+          <div class="why-feature-num">04</div>
+          <div>
+            <h4>Quality Materials</h4>
+            <p>We use top-tier materials from trusted manufacturers. Your home deserves the best, and that's what we deliver.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual fade-in">
+      <div class="why-visual-logo">
+        <span class="wv1">WILSON</span>
+        <span class="wv2">ROOFING</span>
+        <span class="wv3">CO.</span>
+      </div>
+      <div class="why-visual-tagline">Dayton, Ohio &amp; Surrounding Areas</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="area" id="area">
+  <div class="area-inner">
+    <div class="area-text fade-in">
+      <div class="section-label">Service Area</div>
+      <div class="section-title">Proudly Serving the Greater Dayton Area</div>
+      <div class="section-subtitle">We cover Dayton and the surrounding communities throughout Montgomery County and beyond.</div>
+      <div class="area-list">
+        <div class="area-tag">Dayton</div>
+        <div class="area-tag">Tipp City</div>
+        <div class="area-tag">Troy</div>
+        <div class="area-tag">Huber Heights</div>
+        <div class="area-tag">Centerville</div>
+        <div class="area-tag">Beavercreek</div>
+        <div class="area-tag">Kettering</div>
+        <div class="area-tag">Vandalia</div>
+        <div class="area-tag">Englewood</div>
+        <div class="area-tag">Miamisburg</div>
+        <div class="area-tag">Fairborn</div>
+        <div class="area-tag" style="background: var(--green); color: var(--cream);">& Surrounding Areas</div>
+      </div>
+    </div>
+    <div class="area-map fade-in">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d196281.12729567642!2d-84.2!3d39.76!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-header fade-in">
+      <div class="section-label">Get In Touch</div>
+      <div class="section-title">Ready for a Free Estimate?</div>
+      <div class="section-subtitle">No pressure, no obligation — just honest advice and a fair price. Give us a call or shoot us an email.</div>
+    </div>
+    <div class="contact-cta-box fade-in">
+      <div class="cta-headline">Call or Text Anytime</div>
+      <div class="cta-sub">We'll get back to you fast.</div>
+      <a href="tel:9376684122" class="cta-phone">📞 (937) 668-4122</a>
+      <div class="cta-divider">or email us at</div>
+      <a href="mailto:hey@wilsonroofingco.com" class="cta-email">hey@wilsonroofingco.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <span>WILSON</span>
+        <span>ROOFING</span>
+        <span class="fc">CO.</span>
+      </div>
+      <p class="footer-desc">Professional roofing and gutter services for the greater Dayton, Ohio area. Locally owned, hands-on quality, and honest pricing on every job.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#why">Why Us</a>
+        <a href="#area">Service Area</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <div class="footer-links">
+        <a href="tel:9376684122">(937) 668-4122</a>
+        <a href="mailto:hey@wilsonroofingco.com">hey@wilsonroofingco.com</a>
+        <a>Dayton, OH &amp; Surrounding Areas</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Wilson Roofing Co. All rights reserved.</span>
+    <span>Dayton, Ohio</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Hamburger menu
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close menu on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Fade in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+
+</script>
+
+</body>
+</html>
